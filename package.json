@@ -1,0 +1,49 @@
+{
+  "name": "loveurl",
+  "version": "0.1.1",
+  "description": "A url builder and parser pack for handling url states in an easy way.(Beta Version)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "url",
+    "params",
+    "builder",
+    "loveurl",
+    "love",
+    "uri",
+    "js",
+    "javascript",
+    "ts",
+    "typescript",
+    "api",
+    "website",
+    "web",
+    "react",
+    "next",
+    "next.js",
+    "svelte",
+    "vue",
+    "angular",
+    "angular.js",
+    "astro",
+    "searchParams",
+    "querystring",
+    "querybuilder",
+    "urlparams",
+    "anchor"
+  ],
+  "author": {
+    "name": "Nacho Barbano",
+    "email": "nacho.barbano.dev@gmail.com",
+    "url": "https://nacho.barbano.uy/"
+  },
+  "funding": "https://github.com/sponsors/ignacio-nacho-barbano",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ignacio-nacho-barbano/loveUrl"
+  },
+  "homepage": "https://github.com/ignacio-nacho-barbano/loveUrl#readme"
+}
