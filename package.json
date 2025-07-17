@@ -1,10 +1,12 @@
 {
   "name": "loveurl",
-  "version": "0.1.1",
+  "version": "0.1.3",
   "description": "A url builder and parser pack for handling url states in an easy way.(Beta Version)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vitest",
+    "build": "rm -rf ./dist && tsc",
+    "publish": "npm publish"
   },
   "keywords": [
     "url",
@@ -45,5 +47,25 @@
     "type": "git",
     "url": "https://github.com/ignacio-nacho-barbano/loveUrl"
   },
-  "homepage": "https://github.com/ignacio-nacho-barbano/loveUrl#readme"
+  "homepage": "https://github.com/ignacio-nacho-barbano/loveUrl#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "devDependencies": {
+    "@types/lodash-es": "^4.17.12",
+    "lodash-es": "^4.17.21",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4"
+  }
 }
