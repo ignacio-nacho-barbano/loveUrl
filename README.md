@@ -26,6 +26,67 @@ pnpm add love-url
 
 ---
 
+---
+
+### ⚡ TL;DR — Quick Usage
+
+```ts
+type MyParams = {
+  showDetails: boolean;
+  page: number;
+  tags: string[];
+  status: "draft" | "published" | "archived";
+};
+
+// Encode to URL
+// existing params PRESERVED
+// currentPath PRESERVED
+const url = loveUrl<MyParams>({
+  showDetails: true,
+  page: 2,
+  tags: ["food", "travel"],
+  status: "published",
+});
+
+// Encode to URL (existing params REMOVED)
+const url = loveUrl<MyParams>({
+  showDetails: true,
+  page: 2,
+  tags: ["food", "travel"],
+ , status: "published",
+}, {currentParams: null, url: 'route-somewhere-else'});
+
+// pre existing params ? name=bob&page=1
+/*
+  url = "/route-somewhere-else?name=bob&showDetails=true&page=2&tags=food,travel&status=published"
+*/
+
+// Decode from URL
+const parsed = parseLoveUrl<MyParams>(
+  "?showDetails=true&page=2&tags=food,travel&status=published"
+  // or window.location.search
+);
+
+/*
+  parsed = {
+    showDetails: true,
+    page: 2,
+    tags: ["food", "travel"],
+    status: "published"
+  }
+*/
+```
+
+---
+
+### 🧠 Tip
+
+- Arrays are encoded as comma-separated values
+- Booleans and numbers are parsed and typed automatically
+- Invalid values (like a wrong `status`) will be parsed as `undefined` unless custom validation is added
+
+---
+
 ### 🚀 Motivation
 
 **loveUrl** aims to simplify the common headaches when building and parsing URLs with parameters in modern JavaScript projects.
