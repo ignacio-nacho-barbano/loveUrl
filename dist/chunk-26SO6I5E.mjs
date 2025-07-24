@@ -1,6 +1,8 @@
 import {
-  buildEncodedSearchString,
-  parseAndDecodeSearchString
+  parseLoveUrl
+} from "./chunk-ELMKNBAW.mjs";
+import {
+  buildEncodedSearchString
 } from "./chunk-TX3VNHBK.mjs";
 
 // node_modules/lodash-es/_freeGlobal.js
@@ -1512,30 +1514,10 @@ function omitBy(object, predicate) {
 var omitBy_default = omitBy;
 
 // src/internal/buildSearchParams.ts
-var parseSearchParams = (params, { validations, parseAsString } = {}) => {
-  const paramsObj = parseAndDecodeSearchString(
-    typeof params === "string" ? params : params.toString(),
-    { parseAsString }
-  );
-  if (typeof paramsObj !== "object") {
-    console.error("Error when parsing params:\n", params);
-    return {};
-  }
-  if (validations) {
-    Object.keys(validations).forEach((key) => {
-      const prop = paramsObj[key];
-      const validation = validations[key];
-      if (prop && !validation?.(prop)) {
-        paramsObj[key] = void 0;
-      }
-    });
-  }
-  return paramsObj;
-};
 var buildNewParamsObject = (newParams, current) => {
   let currentObject = {};
   if (current) {
-    currentObject = typeof current === "string" || "get" in current && "append" in current ? parseSearchParams(current) : current;
+    currentObject = typeof current === "string" || "get" in current && "append" in current ? parseLoveUrl(current) : current;
   }
   return omitBy_default(
     {
@@ -1552,7 +1534,6 @@ var buildSearchParamsQueryString = (newParams, current) => {
 };
 
 export {
-  parseSearchParams,
   buildNewParamsObject,
   buildSearchParamsQueryString
 };

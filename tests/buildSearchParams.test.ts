@@ -2,9 +2,8 @@ import { beforeEach, describe, expect, test, vi } from "vitest";
 import {
   buildNewParamsObject,
   buildSearchParamsQueryString,
-  parseSearchParams,
 } from "../dist/internal/buildSearchParams";
-import { loveUrl, initializeLoveUrl } from "../dist";
+import { loveUrl, initializeLoveUrl, parseLoveUrl } from "../dist";
 
 describe("buildSearchParams utils", () => {
   const newParamsObj = {
@@ -33,8 +32,8 @@ describe("buildSearchParams utils", () => {
   const prevParams = buildSearchParamsQueryString(prevParamsObj);
   const absoluteUrl = `https://website.com${pathname}${prevParams}#deps-web`;
 
-  describe("parseSearchParams", () => {
-    const values = parseSearchParams<typeof newParamsObj>(newParams);
+  describe("parseLoveUrl", () => {
+    const values = parseLoveUrl<typeof newParamsObj>(newParams);
 
     test("it removes undefined", () => {
       expect(!("undef" in values)).toBe(true);
@@ -44,7 +43,7 @@ describe("buildSearchParams utils", () => {
     describe("when using options", () => {
       test("it parses values as arrays when joined by coma", () => {
         const { someValues = [] } =
-          parseSearchParams<typeof newParamsObj>(newParams);
+          parseLoveUrl<typeof newParamsObj>(newParams);
 
         expect(someValues[0]).toBe("a,~1");
         expect(someValues[1]).toBe("b,~2");
@@ -59,7 +58,7 @@ describe("buildSearchParams utils", () => {
           ...newParamsObj,
           someValues: ["a-1"],
         });
-        const values = parseSearchParams<typeof newParamsObj>(params);
+        const values = parseLoveUrl<typeof newParamsObj>(params);
 
         expect(values.someValues?.[0]).toBe("a-1");
       });
@@ -69,7 +68,7 @@ describe("buildSearchParams utils", () => {
           ...newParamsObj,
           someValues: ["a-1, b-2"],
         });
-        const values = parseSearchParams<typeof newParamsObj>(params);
+        const values = parseLoveUrl<typeof newParamsObj>(params);
 
         expect(values.someValues?.[0]).toBe("a-1, b-2");
       });
@@ -80,7 +79,7 @@ describe("buildSearchParams utils", () => {
           someValues: ["a-1, b-2", "the great, tiger"],
         });
 
-        const values = parseSearchParams<typeof newParamsObj>(params);
+        const values = parseLoveUrl<typeof newParamsObj>(params);
 
         expect(values.someValues?.[0]).toBe("a-1, b-2");
         expect(values.someValues?.[1]).toBe("the great, tiger");
@@ -88,28 +87,22 @@ describe("buildSearchParams utils", () => {
 
       describe("validations", () => {
         test("it allows valid values to pass", () => {
-          const parsedParams = parseSearchParams<typeof newParamsObj>(
-            newParams,
-            {
-              validations: {
-                someValues: (values) => (values as string[]).includes("a,~1"),
-              },
-            }
-          );
+          const parsedParams = parseLoveUrl<typeof newParamsObj>(newParams, {
+            validations: {
+              someValues: (values) => (values as string[]).includes("a,~1"),
+            },
+          });
 
           expect(parsedParams).toEqual(newParamsObj);
         });
 
         test("it removes invalid values", () => {
-          const parsedParams = parseSearchParams<typeof newParamsObj>(
-            newParams,
-            {
-              validations: {
-                // This should fail, we don't have this value on the newParamsObj
-                someValues: (values) => (values as string[]).includes("🔫"),
-              },
-            }
-          );
+          const parsedParams = parseLoveUrl<typeof newParamsObj>(newParams, {
+            validations: {
+              // This should fail, we don't have this value on the newParamsObj
+              someValues: (values) => (values as string[]).includes("🔫"),
+            },
+          });
 
           const expectedResult = { ...newParamsObj };
 
@@ -121,7 +114,7 @@ describe("buildSearchParams utils", () => {
         });
 
         test("it allows for using default values when the validations fails", () => {
-          const { NUMBER_X = 10 } = parseSearchParams<typeof newParamsObj>(
+          const { NUMBER_X = 10 } = parseLoveUrl<typeof newParamsObj>(
             "NUMBER_X=1",
             {
               validations: {

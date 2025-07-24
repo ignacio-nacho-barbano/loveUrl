@@ -1,9 +1,9 @@
 import { isUndefined, omitBy } from "lodash-es";
 import {
   buildEncodedSearchString,
-  parseAndDecodeSearchString,
   type parseAndDecodeSearchStringOptions,
 } from "./encodeAndDecodeSearchStrings";
+import { parseLoveUrl } from "./parseLoveUrl";
 
 export type ParamsObject<T = Record<string, unknown>> = Partial<T>;
 export type ParamsQuery = URLSearchParams | string;
@@ -23,33 +23,6 @@ export type ParseOptions<T> = {
  * - You can destructure params
  * - Components will update when any member changes (because you use params here)
  */
-export const parseSearchParams = <T>(
-  params: ParamsQuery,
-  { validations, parseAsString }: ParseOptions<T> = {}
-): ParamsObject<T> => {
-  const paramsObj = parseAndDecodeSearchString<T>(
-    typeof params === "string" ? params : params.toString(),
-    { parseAsString }
-  );
-
-  if (typeof paramsObj !== "object") {
-    console.error("Error when parsing params:\n", params);
-    return {};
-  }
-
-  if (validations) {
-    Object.keys(validations).forEach((key) => {
-      const prop = paramsObj[key as keyof T];
-      const validation = validations[key as keyof T];
-
-      if (prop && !validation?.(prop)) {
-        paramsObj[key as keyof T] = undefined;
-      }
-    });
-  }
-
-  return paramsObj as ParamsObject<T>;
-};
 
 /**
  * ## Use this to build a new params object
@@ -67,7 +40,7 @@ export const buildNewParamsObject = <T>(
   if (current) {
     currentObject =
       typeof current === "string" || ("get" in current && "append" in current)
-        ? parseSearchParams(current as ParamsQuery)
+        ? parseLoveUrl(current as ParamsQuery)
         : (current as ParamsObject);
   }
 

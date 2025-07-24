@@ -13,8 +13,7 @@ type ParamsQuery = URLSearchParams | string;
 type ParseOptions<T> = {
     validations?: Partial<Record<keyof T, (value: unknown) => boolean>>;
 } & parseAndDecodeSearchStringOptions<T>;
-declare const parseSearchParams: <T>(params: ParamsQuery, { validations, parseAsString }?: ParseOptions<T>) => ParamsObject<T>;
 declare const buildNewParamsObject: <T>(newParams: ParamsObject<T>, current?: ParamsQuery | ParamsObject | null) => ParamsObject<T>;
 declare const buildSearchParamsQueryString: <T>(newParams: ParamsObject<T>, current?: ParamsQuery | ParamsObject | null) => string;
 
-export { type ParamsObject as P, parseAndDecodeSearchString as a, buildSearchParamsQueryString as b, buildEncodedSearchString as c, parseSeparatorToCommas as d, encodeArrayForUrlParam as e, type ParamsQuery as f, type ParseOptions as g, parseSearchParams as h, buildNewParamsObject as i, type parseAndDecodeSearchStringOptions as p };
+export { type ParamsObject as P, type ParamsQuery as a, buildSearchParamsQueryString as b, type ParseOptions as c, parseAndDecodeSearchString as d, encodeArrayForUrlParam as e, buildEncodedSearchString as f, parseSeparatorToCommas as g, buildNewParamsObject as h, type parseAndDecodeSearchStringOptions as p };
