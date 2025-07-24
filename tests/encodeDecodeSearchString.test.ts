@@ -70,6 +70,19 @@ describe("Encode decode search string", () => {
       expect(parseAndDecodeSearchString(encoded)).toEqual(decoded);
     });
 
+    test("it ignores dangerous patterns", () => {
+      const dangerous = [
+        "evil=<script>alert(1)</script>",
+        "url=javascript:alert(1)",
+        "code=eval(alert(1))",
+        "onload=doEvil()",
+      ].join("&");
+
+      expect(parseAndDecodeSearchString(`${encoded}&${dangerous}`)).toEqual(
+        decoded
+      );
+    });
+
     test("it removes unwanted empty and undefined values", () => {
       expect(parseAndDecodeSearchString(dirtyString)).toEqual(decoded);
     });

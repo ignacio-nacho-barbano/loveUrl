@@ -34,7 +34,11 @@ export const parseAndDecodeSearchString = <T>(
       if (parseAsString?.includes(key as keyof T)) {
         result[key] = value;
       } else {
-        result[key] = decodePrimitive(value);
+        const parsedValue = decodePrimitive(value);
+
+        if (parsedValue === undefined) continue;
+
+        result[key] = parsedValue;
       }
     }
   }

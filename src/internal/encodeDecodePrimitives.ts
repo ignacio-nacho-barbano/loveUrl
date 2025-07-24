@@ -1,27 +1,36 @@
+import { SUSPICIOUS_PATTERN } from "./regex";
+
 export type PrimitivesInUrl = string | number | boolean | null | undefined;
 
 export const decodePrimitive = (value: string): PrimitivesInUrl => {
-  if (value === '') return '';
+  if (value === "true") return true;
 
-  if (value === 'true') return true;
+  if (value === "false") return false;
 
-  if (value === 'false') return false;
+  if (value === "null") return null;
 
-  if (value === 'null') return null;
-
-  if (value === 'undefined') return undefined;
+  if (value === "undefined") return undefined;
 
   const number = Number(value);
 
   if (!Number.isNaN(number)) return number;
 
-  return decodeURIComponent(value.replaceAll('+', ' '));
+  let decoded = decodeURIComponent(value.replaceAll("+", " "));
+
+  console.log(value);
+
+  if (SUSPICIOUS_PATTERN.test(value)) {
+    return undefined;
+  }
+
+  return decoded;
 };
 
 export const encodeIfStringOrNull = (
-  value: PrimitivesInUrl,
+  value: PrimitivesInUrl
 ): PrimitivesInUrl => {
-  if (typeof value === 'string' || value === null) return encodeURIComponent(value as string);
+  if (typeof value === "string" || value === null)
+    return encodeURIComponent(value as string);
 
   return value;
 };

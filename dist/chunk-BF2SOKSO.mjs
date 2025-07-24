@@ -4,7 +4,7 @@ import {
 import {
   decodePrimitive,
   encodeIfStringOrNull
-} from "./chunk-73O6BRHL.mjs";
+} from "./chunk-GCZVDRH3.mjs";
 
 // src/internal/encodeAndDecodeSearchStrings.ts
 var parseAndDecodeSearchString = (searchParamsString, { parseAsString } = {}) => {
@@ -19,7 +19,9 @@ var parseAndDecodeSearchString = (searchParamsString, { parseAsString } = {}) =>
       if (parseAsString?.includes(key)) {
         result[key] = value;
       } else {
-        result[key] = decodePrimitive(value);
+        const parsedValue = decodePrimitive(value);
+        if (parsedValue === void 0) continue;
+        result[key] = parsedValue;
       }
     }
   }
