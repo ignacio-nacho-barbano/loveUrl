@@ -11,6 +11,8 @@
         "strict": true,
         "skipLibCheck": true,
         "stripInternal": true,
+        "removeComments": true,
+        "diagnostics": true,
     },
     "include": [
         "src"
