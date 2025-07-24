@@ -26,8 +26,6 @@ pnpm add love-url
 
 ---
 
----
-
 ### ⚡ TL;DR — Quick Usage
 
 ```ts
@@ -49,21 +47,27 @@ const url = loveUrl<MyParams>({
 });
 
 // Encode to URL (existing params REMOVED)
-const url = loveUrl<MyParams>({
-  showDetails: true,
-  page: 2,
-  tags: ["food", "travel"],
- , status: "published",
-}, {currentParams: null, url: 'route-somewhere-else'});
+const url = loveUrl<MyParams>(
+  {
+    showDetails: true,
+    page: 2,
+    tags: ["food", "travel"],
+    status: "published",
+  },
+  {
+    currentParams: null,
+    url: "route-somewhere-else",
+  }
+);
 
-// pre existing params ? name=bob&page=1
+// Pre-existing params ?name=bob&page=1
 /*
-  url = "/route-somewhere-else?name=bob&showDetails=true&page=2&tags=food,travel&status=published"
+  url = "/route-somewhere-else?name=bob&showDetails=true&page=2&tags=_._food_._travel&status=published"
 */
 
 // Decode from URL
 const parsed = parseLoveUrl<MyParams>(
-  "?showDetails=true&page=2&tags=food,travel&status=published"
+  "?showDetails=true&page=2&tags=_._food_._travel&status=published"
   // or window.location.search
 );
 
@@ -81,9 +85,12 @@ const parsed = parseLoveUrl<MyParams>(
 
 ### 🧠 Tip
 
-- Arrays are encoded as comma-separated values
+- Arrays are encoded using a custom separator: `_._`  
+  This ensures:
+  - Consistent decoding even with a single item (`tags=_._design` → `["design"]`)
+  - Reliable parsing when array items contain commas
 - Booleans and numbers are parsed and typed automatically
-- Invalid values (like a wrong `status`) will be parsed as `undefined` unless custom validation is added
+- Invalid values (e.g., `status=broken`) will be parsed as `strings` unless custom validation is added
 
 ---
 
@@ -255,6 +262,7 @@ Type-safe, clean, and handles all conversions for you.
 
 - Automatically ignores `undefined` values
 - Handles complex param types like arrays, numbers, and booleans
+- Uses a custom array separator (`_._`) for full consistency
 - Prevents messy string interpolation
 - Decodes and encodes with full TypeScript support
 - Deals with duplicate params gracefully
