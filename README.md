@@ -56,7 +56,7 @@ const url = loveUrl<MyParams>(
   },
   {
     currentParams: null,
-    url: "route-somewhere-else",
+    url: "/route-somewhere-else",
   }
 );
 

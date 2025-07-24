@@ -1,6 +1,6 @@
 {
   "name": "loveurl",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "A url builder and parser pack for handling url states in an easy way.(Beta Version)",
   "main": "index.js",
   "scripts": {
