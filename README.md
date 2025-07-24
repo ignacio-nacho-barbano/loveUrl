@@ -44,7 +44,14 @@ const url = loveUrl<MyParams>({
   page: 2,
   tags: ["food", "travel"],
   status: "published",
+  // This param will be removed
+  car: undefined,
 });
+
+// Pre-existing params ?name=bob&car=fiat%20multipla&page=1
+/*
+  url = "/current-path?name=bob&showDetails=true&page=2&tags=_._food_._travel&status=published"
+*/
 
 // Encode to URL (existing params REMOVED)
 const url = loveUrl<MyParams>(
@@ -62,7 +69,7 @@ const url = loveUrl<MyParams>(
 
 // Pre-existing params ?name=bob&page=1
 /*
-  url = "/route-somewhere-else?name=bob&showDetails=true&page=2&tags=_._food_._travel&status=published"
+  url = "/route-somewhere-else?showDetails=true&page=2&tags=_._food_._travel&status=published"
 */
 
 // Decode from URL
