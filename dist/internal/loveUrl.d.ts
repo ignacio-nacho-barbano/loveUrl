@@ -65,7 +65,7 @@ export type LoveUrlOptions = {
     persistAnchor?: boolean;
     /** an absolute url or relative path that can have params or even an anchor */
     url?: string;
-    protocol?: "http" | "https";
+    relative?: boolean;
 };
-export declare const loveUrl: <T>(newParams: ParamsObject<T>, { url, currentParams, protocol, anchor, persistAnchor }?: LoveUrlOptions) => string;
+export declare const loveUrl: <T>(newParams: ParamsObject<T>, { url, currentParams, anchor, persistAnchor, relative, }?: LoveUrlOptions) => string;
 export type LoveUrlParams<T> = Parameters<typeof loveUrl<T>>;

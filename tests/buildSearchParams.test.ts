@@ -1,4 +1,4 @@
-import { describe, expect, test, vi } from "vitest";
+import { beforeEach, describe, expect, test, vi } from "vitest";
 import {
   buildNewParamsObject,
   buildSearchParamsQueryString,
@@ -31,7 +31,7 @@ describe("buildSearchParams utils", () => {
 
   const pathname = "/example/some-url/";
   const prevParams = buildSearchParamsQueryString(prevParamsObj);
-  const absoluteUrl = `https://example${pathname}${prevParams}#deps-web`;
+  const absoluteUrl = `https://website.com${pathname}${prevParams}#deps-web`;
 
   describe("parseSearchParams", () => {
     const values = parseSearchParams<typeof newParamsObj>(newParams);
@@ -289,44 +289,25 @@ describe("buildSearchParams utils", () => {
   });
 
   describe("loveUrl util", () => {
-    const setWindowLocation = () => {
+    beforeEach(() => {
       initializeLoveUrl({
-        defaultLocationProvider: () => {
-          return {
-            search: prevParams,
-            pathname,
-            ancestorOrigins: {},
-            href: absoluteUrl,
-            origin: "https://example",
-            protocol: "https:",
-            host: "example",
-            hostname: "example",
-            port: "",
-            hash: "#deps-web",
-          } as Location;
-        },
+        urlProvider: () => absoluteUrl,
       });
-    };
+    });
 
     test("It grabs the current params from the URL when the currentParams is undefined", () => {
-      setWindowLocation();
-
       expect(loveUrl(newParamsObj)).toBe(
         `${pathname}?anArray=_._1_._2_._3_._a_._b&example=STRIIIING%2C%20%20soome%20%F0%9F%94%A5!&NUMBER_X=1&override1=New%20String%20here!%E2%9C%85&override2=10&override3=true&query-string=searching&someValues=_._a%2C~1_._b%2C~2_._c%2C.__3_._%F0%9F%98%8E_._6_._7&special=true&useValue=true`
       );
     });
 
     test("It appends the params using a ?", () => {
-      setWindowLocation();
-
       expect(loveUrl(newParamsObj)).toBe(
         `${pathname}?anArray=_._1_._2_._3_._a_._b&example=STRIIIING%2C%20%20soome%20%F0%9F%94%A5!&NUMBER_X=1&override1=New%20String%20here!%E2%9C%85&override2=10&override3=true&query-string=searching&someValues=_._a%2C~1_._b%2C~2_._c%2C.__3_._%F0%9F%98%8E_._6_._7&special=true&useValue=true`
       );
     });
 
     test("It uses current params if passed on the URL", () => {
-      setWindowLocation();
-
       expect(
         loveUrl(
           { otherOne: 5 },
@@ -336,8 +317,6 @@ describe("buildSearchParams utils", () => {
     });
 
     test("It uses current params if passed on the URL even when current params are also passed", () => {
-      setWindowLocation();
-
       expect(
         loveUrl(
           { otherOne: 5 },
@@ -351,8 +330,6 @@ describe("buildSearchParams utils", () => {
     });
 
     test("It uses the passed hash", () => {
-      setWindowLocation();
-
       expect(loveUrl(newParamsObj, { anchor: "idString" })).toBe(
         `${pathname}?anArray=_._1_._2_._3_._a_._b&example=STRIIIING%2C%20%20soome%20%F0%9F%94%A5!&NUMBER_X=1&override1=New%20String%20here!%E2%9C%85&override2=10&override3=true&query-string=searching&someValues=_._a%2C~1_._b%2C~2_._c%2C.__3_._%F0%9F%98%8E_._6_._7&special=true&useValue=true#idString`
       );
@@ -361,41 +338,31 @@ describe("buildSearchParams utils", () => {
     test("It deletes the existing hash by default", () => {
       /* This behavior differs from the one applied to there params were by default
     state is preserved because we don't want to scroll back to an element when a param changes */
-      setWindowLocation();
 
-      expect(loveUrl(newParamsObj, { url: `${pathname}#idString` })).toBe(
+      expect(loveUrl(newParamsObj)).toBe(
         `${pathname}?anArray=_._1_._2_._3_._a_._b&example=STRIIIING%2C%20%20soome%20%F0%9F%94%A5!&NUMBER_X=1&override1=New%20String%20here!%E2%9C%85&override2=10&override3=true&query-string=searching&someValues=_._a%2C~1_._b%2C~2_._c%2C.__3_._%F0%9F%98%8E_._6_._7&special=true&useValue=true`
       );
     });
 
-    test("It deletes the existing hash by default", () => {
-      setWindowLocation();
-
-      expect(loveUrl(newParamsObj, { url: `${pathname}#idString` })).toBe(
+    test("It deletes the existing hash by default when passed on the url param", () => {
+      expect(loveUrl(newParamsObj, { url: absoluteUrl })).toBe(
         `${pathname}?anArray=_._1_._2_._3_._a_._b&example=STRIIIING%2C%20%20soome%20%F0%9F%94%A5!&NUMBER_X=1&override1=New%20String%20here!%E2%9C%85&override2=10&override3=true&query-string=searching&someValues=_._a%2C~1_._b%2C~2_._c%2C.__3_._%F0%9F%98%8E_._6_._7&special=true&useValue=true`
       );
     });
 
     test("It deletes the existing hash when passed an empty string", () => {
-      setWindowLocation();
-
-      expect(
-        loveUrl(newParamsObj, { url: `${pathname}#idString`, anchor: "" })
-      ).toBe(
+      expect(loveUrl(newParamsObj, { url: absoluteUrl, anchor: "" })).toBe(
         `${pathname}?anArray=_._1_._2_._3_._a_._b&example=STRIIIING%2C%20%20soome%20%F0%9F%94%A5!&NUMBER_X=1&override1=New%20String%20here!%E2%9C%85&override2=10&override3=true&query-string=searching&someValues=_._a%2C~1_._b%2C~2_._c%2C.__3_._%F0%9F%98%8E_._6_._7&special=true&useValue=true`
       );
     });
 
     test("it does not preserve the current params when passed null", () => {
-      setWindowLocation();
-      const mock = vi.fn();
       expect(loveUrl(newParamsObj, { currentParams: null })).toBe(
         `${pathname}?NUMBER_X=1&override1=New%20String%20here!%E2%9C%85&override2=10&override3=true&query-string=searching&someValues=_._a%2C~1_._b%2C~2_._c%2C.__3_._%F0%9F%98%8E_._6_._7&useValue=true`
       );
     });
 
     test.skip("it builds the params calling buildSearchParamsQueryString with the right params", () => {
-      setWindowLocation();
       const mock = vi.fn();
       initializeLoveUrl({ _paramsBuilder: mock });
       loveUrl(newParamsObj);

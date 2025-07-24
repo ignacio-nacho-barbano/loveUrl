@@ -59,37 +59,36 @@
 import { buildSearchParamsQueryString, } from "./buildSearchParams";
 import { GLOBAL_CONFIG, initializeLoveUrl } from "./config";
 initializeLoveUrl({ _paramsBuilder: buildSearchParamsQueryString });
-export const loveUrl = (newParams, { url, currentParams, protocol, anchor, persistAnchor } = {}) => {
-    console.log("CURRENT PARAMS\n\n", GLOBAL_CONFIG.defaultLocationProvider().search);
-    let _url = url || GLOBAL_CONFIG.defaultLocationProvider().pathname;
-    let _params = currentParams === undefined
-        ? GLOBAL_CONFIG.defaultLocationProvider().search
-        : currentParams;
+export const loveUrl = (newParams, { url, currentParams, anchor, persistAnchor, relative = GLOBAL_CONFIG.defaultRelative, } = {}) => {
+    let [_url, _currentParams, malformed] = (url || GLOBAL_CONFIG.urlProvider()).split("?");
+    if (malformed) {
+        throw new Error(`Malformed URL detected: ${url || GLOBAL_CONFIG.urlProvider()} \nUrl seems to have more than a single query delimiter -> "?"`);
+    }
+    if (relative) {
+        /** checks for the url and grabs the relative path */
+        const isAbsolute = _url.match(/\w\.\w{3}(\/[\w]+.*$)/);
+        if (isAbsolute && isAbsolute[1]) {
+            _url = isAbsolute[1];
+        }
+    }
+    let _params = _currentParams && currentParams !== null ? _currentParams : currentParams;
     if (_params && _params[0] === "?") {
         _params = _params.slice(1);
     }
-    if (url?.includes("?")) {
-        const [cleanUrl, splitParams] = url.split("?");
-        _url = cleanUrl;
-        if (splitParams && currentParams !== null) {
-            _params = splitParams;
-            if (splitParams.includes("#")) {
-                _params = splitParams.split("#")[0];
+    let newAnchor = "";
+    if (anchor) {
+        newAnchor = `#${anchor}`;
+    }
+    if (_params) {
+        if (_params.includes("#")) {
+            const [paramsWithoutAnchor, existingAnchor] = _params.split("#");
+            _params = paramsWithoutAnchor;
+            if (persistAnchor && !anchor) {
+                newAnchor = `#${existingAnchor}`;
             }
         }
     }
-    // Always remove the anchor from the url to avoid duplicates
-    const parts = _url.split("#");
-    _url = parts[0];
-    const currentAnchor = parts[1];
-    console.log({ _params });
-    let newUrl = `${protocol ? `${protocol}://` : ""}${_url}${GLOBAL_CONFIG._paramsBuilder(newParams, _params)}`;
+    let newUrl = `${_url}${GLOBAL_CONFIG._paramsBuilder(newParams, _params)}${newAnchor}`;
     // Anchor is not preserved by default as it is assumed the intention is not to scroll back to the same place in every interaction
-    if (anchor) {
-        newUrl += `#${anchor}`;
-    }
-    else if (persistAnchor) {
-        newUrl += `#${currentAnchor}`;
-    }
     return newUrl;
 };

@@ -1,6 +1,6 @@
 export const defaultConfig = {
     defaultRelative: true,
-    defaultLocationProvider: () => window.location,
+    urlProvider: () => window.location.href,
     arraySeparator: "_._",
     _paramsBuilder: (() => {
         throw "params builder not initialized";
