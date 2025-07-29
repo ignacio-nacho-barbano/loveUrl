@@ -13,7 +13,17 @@ export type LoveUrlConfig = {
 
 export const defaultConfig: LoveUrlConfig = {
   defaultRelative: true,
-  urlProvider: () => window.location.href,
+  urlProvider: () => {
+    const currentURL = globalThis?.window?.location?.href;
+
+    if (currentURL) return currentURL;
+
+    console.warn(
+      "loveurl: warning.\n Please define a urlProvider in the config; default window object is not available. \n This usually happens in the context of a SSR project."
+    );
+
+    return "/";
+  },
   arraySeparator: "_._",
   _paramsBuilder: (() => {
     throw "params builder not initialized";

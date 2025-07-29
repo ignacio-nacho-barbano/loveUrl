@@ -2,7 +2,7 @@ import {
   GLOBAL_CONFIG,
   defaultConfig,
   initializeLoveUrl
-} from "../chunk-PAVHIWUL.mjs";
+} from "../chunk-DMGKTHOH.mjs";
 export {
   GLOBAL_CONFIG,
   defaultConfig,
