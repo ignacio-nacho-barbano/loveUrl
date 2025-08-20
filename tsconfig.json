@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "target": "ES2021",
+        "target": "es2017",
         "module": "ESNext",
         "declaration": true,
         "outDir": "./dist",

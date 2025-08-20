@@ -1,4 +1,4 @@
-import { PrimitivesInUrl } from './internal/encodeDecodePrimitives.mjs';
+import { PrimitivesInUrl } from './internal/encodeDecodePrimitives.js';
 
 type parseAndDecodeSearchStringOptions<T> = {
     parseAsString?: (keyof T)[];

@@ -15,7 +15,8 @@ export const decodePrimitive = (value: string): PrimitivesInUrl => {
 
   if (!Number.isNaN(number)) return number;
 
-  let decoded = decodeURIComponent(value.replaceAll("+", " "));
+  // ReplaceAll is not available
+  let decoded = decodeURIComponent(value.split("+").join(" "));
 
   console.log(value);
 

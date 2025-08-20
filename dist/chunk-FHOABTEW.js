@@ -1,6 +1,6 @@
 import {
   parseAndDecodeSearchString
-} from "./chunk-SV6Q7VFA.mjs";
+} from "./chunk-OEZZXW53.js";
 
 // src/internal/parseLoveUrl.ts
 var parseLoveUrl = (params, { validations, parseAsString } = {}) => {
@@ -16,7 +16,7 @@ var parseLoveUrl = (params, { validations, parseAsString } = {}) => {
     Object.keys(validations).forEach((key) => {
       const prop = paramsObj[key];
       const validation = validations[key];
-      if (prop && !validation?.(prop)) {
+      if (prop && !(validation == null ? void 0 : validation(prop))) {
         paramsObj[key] = void 0;
       }
     });

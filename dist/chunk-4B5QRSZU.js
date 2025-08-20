@@ -1,6 +1,6 @@
 import {
   SUSPICIOUS_PATTERN
-} from "./chunk-RKREI7DL.mjs";
+} from "./chunk-J2FN4433.js";
 
 // src/internal/encodeDecodePrimitives.ts
 var decodePrimitive = (value) => {
@@ -10,7 +10,7 @@ var decodePrimitive = (value) => {
   if (value === "undefined") return void 0;
   const number = Number(value);
   if (!Number.isNaN(number)) return number;
-  let decoded = decodeURIComponent(value.replaceAll("+", " "));
+  let decoded = decodeURIComponent(value.split("+").join(" "));
   console.log(value);
   if (SUSPICIOUS_PATTERN.test(value)) {
     return void 0;

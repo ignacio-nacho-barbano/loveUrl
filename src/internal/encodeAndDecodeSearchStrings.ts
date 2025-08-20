@@ -87,7 +87,12 @@ export const buildEncodedSearchString = (
 export const parseSeparatorToCommas = (paramsString: string | ParamsQuery) => {
   const stringToParse =
     typeof paramsString !== "string" ? paramsString.toString() : paramsString;
-  return stringToParse
-    .replaceAll(`=${GLOBAL_CONFIG.arraySeparator}`, "=")
-    .replaceAll(GLOBAL_CONFIG.arraySeparator, ",");
+  return (
+    stringToParse
+      // ReplaceAll is not available
+      .split(`=${GLOBAL_CONFIG.arraySeparator}`)
+      .join("=")
+      .split(GLOBAL_CONFIG.arraySeparator)
+      .join(",")
+  );
 };

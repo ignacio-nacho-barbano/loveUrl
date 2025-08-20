@@ -1,9 +1,12 @@
 import {
   parseLoveUrl
-} from "./chunk-Z23D4BHZ.mjs";
+} from "./chunk-FHOABTEW.js";
 import {
   buildEncodedSearchString
-} from "./chunk-SV6Q7VFA.mjs";
+} from "./chunk-OEZZXW53.js";
+import {
+  __spreadValues
+} from "./chunk-5JBD5THX.js";
 
 // node_modules/lodash-es/_freeGlobal.js
 var freeGlobal = typeof global == "object" && global && global.Object === Object && global;
@@ -1520,10 +1523,7 @@ var buildNewParamsObject = (newParams, current) => {
     currentObject = typeof current === "string" || "get" in current && "append" in current ? parseLoveUrl(current) : current;
   }
   return omitBy_default(
-    {
-      ...currentObject,
-      ...newParams
-    },
+    __spreadValues(__spreadValues({}, currentObject), newParams),
     isUndefined_default
   );
 };

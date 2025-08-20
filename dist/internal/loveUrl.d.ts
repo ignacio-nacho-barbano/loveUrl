@@ -1,5 +1,5 @@
-import { P as ParamsObject } from '../buildSearchParams-Dt3CHWZL.mjs';
-import './encodeDecodePrimitives.mjs';
+import { P as ParamsObject } from '../buildSearchParams-CoXCbsqo.js';
+import './encodeDecodePrimitives.js';
 
 type LoveUrlOptions = {
     currentParams?: string | null | undefined;

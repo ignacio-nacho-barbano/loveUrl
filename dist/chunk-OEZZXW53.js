@@ -1,10 +1,10 @@
 import {
   GLOBAL_CONFIG
-} from "./chunk-DMGKTHOH.mjs";
+} from "./chunk-D4UI23G7.js";
 import {
   decodePrimitive,
   encodeIfStringOrNull
-} from "./chunk-GCZVDRH3.mjs";
+} from "./chunk-4B5QRSZU.js";
 
 // src/internal/encodeAndDecodeSearchStrings.ts
 var parseAndDecodeSearchString = (searchParamsString, { parseAsString } = {}) => {
@@ -13,10 +13,10 @@ var parseAndDecodeSearchString = (searchParamsString, { parseAsString } = {}) =>
   const members = _searchString.split("&");
   for (let i = 0; i < members.length; i++) {
     const [key, value] = members[i].split("=");
-    if (value?.startsWith(GLOBAL_CONFIG.arraySeparator)) {
+    if (value == null ? void 0 : value.startsWith(GLOBAL_CONFIG.arraySeparator)) {
       result[key] = value.split(GLOBAL_CONFIG.arraySeparator).map(decodePrimitive).slice(1);
     } else if (value && value !== "undefined") {
-      if (parseAsString?.includes(key)) {
+      if (parseAsString == null ? void 0 : parseAsString.includes(key)) {
         result[key] = value;
       } else {
         const parsedValue = decodePrimitive(value);
@@ -47,7 +47,7 @@ var buildEncodedSearchString = (params) => {
 };
 var parseSeparatorToCommas = (paramsString) => {
   const stringToParse = typeof paramsString !== "string" ? paramsString.toString() : paramsString;
-  return stringToParse.replaceAll(`=${GLOBAL_CONFIG.arraySeparator}`, "=").replaceAll(GLOBAL_CONFIG.arraySeparator, ",");
+  return stringToParse.split(`=${GLOBAL_CONFIG.arraySeparator}`).join("=").split(GLOBAL_CONFIG.arraySeparator).join(",");
 };
 
 export {

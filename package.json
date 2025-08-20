@@ -1,6 +1,6 @@
 {
   "name": "loveurl",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "description": "A url builder and parser pack for handling url states in an easy way.(Beta Version)",
   "main": "index.mjs",
   "scripts": {
@@ -8,6 +8,7 @@
     "build": "rm -rf ./dist && tsup src/* --dts --format esm --out-dir dist --clean",
     "publish": "npm publish"
   },
+  "type": "module",
   "keywords": [
     "url",
     "params",

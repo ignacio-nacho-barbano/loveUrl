@@ -1,5 +1,5 @@
-import { b as buildSearchParamsQueryString } from '../buildSearchParams-Dt3CHWZL.mjs';
-import './encodeDecodePrimitives.mjs';
+import { b as buildSearchParamsQueryString } from '../buildSearchParams-CoXCbsqo.js';
+import './encodeDecodePrimitives.js';
 
 type LoveUrlConfig = {
     defaultRelative: boolean;
