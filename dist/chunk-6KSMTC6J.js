@@ -22,7 +22,7 @@ var loveUrl = (newParams, {
 Url seems to have more than a single query delimiter -> "?"`
     );
   }
-  if (relative) {
+  if (relative && !url) {
     const isAbsolute = _url.match(/\w\.\w{3}(\/[\w]+.*$)/);
     if (isAbsolute && isAbsolute[1]) {
       _url = isAbsolute[1];

@@ -98,7 +98,7 @@ export const loveUrl = <T>(
     );
   }
 
-  if (relative) {
+  if (relative && !url) {
     /** checks for the url and grabs the relative path */
     const isAbsolute = _url.match(/\w\.\w{3}(\/[\w]+.*$)/);
 

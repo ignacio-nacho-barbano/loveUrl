@@ -2,7 +2,7 @@
   "name": "loveurl",
   "version": "0.4.4",
   "description": "A url builder and parser pack for handling url states in an easy way.(Beta Version)",
-  "main": "index.mjs",
+  "main": "index.js",
   "scripts": {
     "test": "vitest",
     "build": "rm -rf ./dist && tsup src/* --dts --format esm --out-dir dist --clean",
@@ -59,8 +59,8 @@
   ],
   "exports": {
     ".": {
-      "import": "./dist/index.mjs",
-      "types": "./dist/index.d.mts"
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
     }
   },
   "devDependencies": {

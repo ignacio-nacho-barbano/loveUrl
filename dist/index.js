@@ -1,6 +1,6 @@
 import {
   loveUrl
-} from "./chunk-7HNFPQG3.js";
+} from "./chunk-6KSMTC6J.js";
 import "./chunk-WM2S3RBP.js";
 import {
   parseLoveUrl
