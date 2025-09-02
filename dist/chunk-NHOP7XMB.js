@@ -1,0 +1,3 @@
+import {b}from'./chunk-GQ7ABKIC.js';import {c,b as b$1}from'./chunk-TPVK2J23.js';c({_paramsBuilder:b});var $=(u,{url:i,currentParams:n,anchor:l,persistAnchor:f,relative:c=b$1.defaultRelative}={})=>{let[o,s,d]=(i||b$1.urlProvider()).split("?");if(d)throw new Error(`Malformed URL detected: ${i||b$1.urlProvider()} 
+Url seems to have more than a single query delimiter -> "?"`);if(c&&!i){let r=o.match(/\w\.\w{3}(\/[\w]+.*$)/);r&&r[1]&&(o=r[1]);}let e=s&&n!==null?s:n;e&&e[0]==="?"&&(e=e.slice(1));let a="";if(l&&(a=`#${l}`),e&&e.includes("#")){let[r,v]=e.split("#");e=r,f&&!l&&(a=`#${v}`);}return `${o}${b$1._paramsBuilder(u,e)}${a}`};export{$ as a};//# sourceMappingURL=chunk-NHOP7XMB.js.map
+//# sourceMappingURL=chunk-NHOP7XMB.js.map

@@ -1,0 +1,2 @@
+import {c as c$1}from'./chunk-TPVK2J23.js';import {createContext,useContext,useRef}from'react';import {jsx}from'react/jsx-runtime';var e=createContext({}),c=()=>useContext(e),a=({options:r,children:t})=>{let i=useRef(c$1(r));return jsx(e.Provider,{value:i.current,children:t})};export{c as a,a as b};//# sourceMappingURL=chunk-HQPKHIBE.js.map
+//# sourceMappingURL=chunk-HQPKHIBE.js.map

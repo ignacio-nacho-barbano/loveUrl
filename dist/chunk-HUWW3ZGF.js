@@ -1,0 +1,3 @@
+import {a}from'./chunk-2X3PK2B2.js';var T=(r,{validations:o,parseAsString:c}={})=>{let e=a(typeof r=="string"?r:r.toString(),{parseAsString:c});return typeof e!="object"?(console.error(`Error when parsing params:
+`,r),{}):(o&&Object.keys(o).forEach(s=>{let n=e[s],t=o[s];n&&!(t!=null&&t(n))&&(e[s]=void 0);}),e)};export{T as a};//# sourceMappingURL=chunk-HUWW3ZGF.js.map
+//# sourceMappingURL=chunk-HUWW3ZGF.js.map

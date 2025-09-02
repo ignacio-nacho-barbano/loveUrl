@@ -1,0 +1,2 @@
+import {b}from'./chunk-HQPKHIBE.js';import {a}from'./chunk-BFPETA3F.js';import {useSearchParams,usePathname}from'next/navigation';import {jsx}from'react/jsx-runtime';var m=({options:i,children:t})=>{let r=useSearchParams(),P=usePathname();return jsx(b,{options:a({urlProvider:()=>`${P}${r.toString()?`?${r.toString()}`:""}`},i),children:t})};export{m as a};//# sourceMappingURL=chunk-DIQ5JLGV.js.map
+//# sourceMappingURL=chunk-DIQ5JLGV.js.map

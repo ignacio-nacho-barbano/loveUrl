@@ -1,4 +1,4 @@
-import { b as buildSearchParamsQueryString } from '../buildSearchParams-CoXCbsqo.js';
+import { c as buildSearchParamsQueryString } from '../buildSearchParams-I55RwR-S.js';
 import './encodeDecodePrimitives.js';
 
 type LoveUrlConfig = {
@@ -9,6 +9,6 @@ type LoveUrlConfig = {
 };
 declare const defaultConfig: LoveUrlConfig;
 declare let GLOBAL_CONFIG: LoveUrlConfig;
-declare function initializeLoveUrl(userConfig: Partial<LoveUrlConfig>): void;
+declare function initializeLoveUrl(userConfig: Partial<LoveUrlConfig>): LoveUrlConfig;
 
 export { GLOBAL_CONFIG, type LoveUrlConfig, defaultConfig, initializeLoveUrl };

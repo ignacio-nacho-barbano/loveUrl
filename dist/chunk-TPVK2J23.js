@@ -1,0 +1,4 @@
+import {a as a$1}from'./chunk-BFPETA3F.js';var t={defaultRelative:true,urlProvider:()=>{var i,o;let r=(o=(i=globalThis==null?void 0:globalThis.window)==null?void 0:i.location)==null?void 0:o.href;return r||(console.warn(`loveurl: warning.
+ Please define a urlProvider in the config; default window object is not available. 
+ This usually happens in the context of a SSR project.`),"/")},arraySeparator:"_._",_paramsBuilder:(()=>{throw "params builder not initialized"})},a=t;function u(r){return a=a$1(a$1({},a),r),a}export{t as a,a as b,u as c};//# sourceMappingURL=chunk-TPVK2J23.js.map
+//# sourceMappingURL=chunk-TPVK2J23.js.map

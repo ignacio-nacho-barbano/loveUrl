@@ -1,0 +1,1 @@
+{"version":3,"sources":["../src/internal/regex.ts"],"names":["SUSPICIOUS_PATTERN"],"mappings":"AAAO,IAAMA,CAAAA,CACX","file":"chunk-3K7LDWPH.js","sourcesContent":["export const SUSPICIOUS_PATTERN =\n  /<script\\b[^>]*>|javascript:|on\\w+=|\\w+\\(|eval\\(|setTimeout\\(|setInterval\\(/i;\n"]}

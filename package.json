@@ -1,8 +1,42 @@
 {
   "name": "loveurl",
-  "version": "0.4.4",
+  "version": "0.5.0",
   "description": "A url builder and parser pack for handling url states in an easy way.(Beta Version)",
-  "main": "index.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs"
+    },
+    "./react": {
+      "import": "./dist/react/index.js",
+      "types": "./dist/react/index.d.ts",
+      "require": "./dist/react/index.cjs"
+    },
+    "./next": {
+      "import": "./dist/next/index.js",
+      "types": "./dist/next/index.d.ts",
+      "require": "./dist/next/index.cjs"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "react": [
+        "dist/react/index.d.ts"
+      ],
+      "next": [
+        "dist/next/index.d.ts"
+      ]
+    }
+  },
   "scripts": {
     "test": "vitest",
     "build": "rm -rf ./dist && tsup src/* --dts --format esm --out-dir dist --clean",
@@ -52,20 +86,25 @@
   "publishConfig": {
     "access": "public"
   },
-  "files": [
-    "dist",
-    "README.md",
-    "LICENSE"
-  ],
-  "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+  "peerDependencies": {
+    "next": ">=14",
+    "react": ">=18 <21",
+    "react-dom": ">=18 <21"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
     }
   },
   "devDependencies": {
     "@types/lodash-es": "^4.17.12",
+    "@types/react": "^18.3.24",
     "lodash-es": "^4.17.21",
+    "next": "^14.0.0",
+    "react": "^18.3.1",
     "tsup": "^8.5.0",
     "typescript": "^5.8.3",
     "vitest": "^3.2.4"

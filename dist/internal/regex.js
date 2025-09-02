@@ -1,7 +1,2 @@
-import {
-  SUSPICIOUS_PATTERN
-} from "../chunk-J2FN4433.js";
-import "../chunk-5JBD5THX.js";
-export {
-  SUSPICIOUS_PATTERN
-};
+export{a as SUSPICIOUS_PATTERN}from'../chunk-3K7LDWPH.js';import'../chunk-BFPETA3F.js';//# sourceMappingURL=regex.js.map
+//# sourceMappingURL=regex.js.map

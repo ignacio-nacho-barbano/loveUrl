@@ -16,4 +16,4 @@ type ParseOptions<T> = {
 declare const buildNewParamsObject: <T>(newParams: ParamsObject<T>, current?: ParamsQuery | ParamsObject | null) => ParamsObject<T>;
 declare const buildSearchParamsQueryString: <T>(newParams: ParamsObject<T>, current?: ParamsQuery | ParamsObject | null) => string;
 
-export { type ParamsObject as P, type ParamsQuery as a, buildSearchParamsQueryString as b, type ParseOptions as c, parseAndDecodeSearchString as d, encodeArrayForUrlParam as e, buildEncodedSearchString as f, parseSeparatorToCommas as g, buildNewParamsObject as h, type parseAndDecodeSearchStringOptions as p };
+export { type ParamsObject as P, type ParamsQuery as a, type ParseOptions as b, buildSearchParamsQueryString as c, parseAndDecodeSearchString as d, encodeArrayForUrlParam as e, buildEncodedSearchString as f, parseSeparatorToCommas as g, buildNewParamsObject as h, type parseAndDecodeSearchStringOptions as p };

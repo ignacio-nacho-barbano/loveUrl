@@ -1,20 +1,24 @@
 {
     "compilerOptions": {
+        "jsx": "react-jsx",
         "target": "es2017",
-        "module": "ESNext",
+        "module": "esnext",
         "declaration": true,
         "outDir": "./dist",
         "rootDir": "./src",
-        "moduleResolution": "node",
+        "moduleResolution": "bundler",
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
+        "noUncheckedSideEffectImports": true,
+        "strictNullChecks": true,
         "strict": true,
         "skipLibCheck": true,
         "stripInternal": true,
         "removeComments": true,
         "diagnostics": true,
+        "declarationMap": true
     },
     "include": [
         "src"
-    ],
+    ]
 }

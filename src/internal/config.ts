@@ -38,4 +38,6 @@ export function initializeLoveUrl(userConfig: Partial<LoveUrlConfig>) {
     ...GLOBAL_CONFIG,
     ...userConfig,
   };
+
+  return GLOBAL_CONFIG;
 }
